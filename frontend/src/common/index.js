@@ -42,7 +42,11 @@ const SummaryApi ={
     category_product :{
         url : `${backendDomin}/api/get-categoryproduct`,
         method : "get"
-    }
+    },
+    category_wise_product :{
+        url : `${backendDomin}/api/category-product`,
+        method : "post"
+    },
 
 }
 
