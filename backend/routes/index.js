@@ -14,6 +14,7 @@ const getProductController = require('../controller/product/getProductController
 const updataProductController = require('../controller/product/updataProductController')
 const getCategoryProductController = require('../controller/product/getCategoryProductOneController')
 const getCategoryWiseProductController = require('../controller/product/getCategoryWiseProductController')
+const getProductDetailController = require('../controller/product/getProductDetailController')
 
 
 
@@ -32,6 +33,8 @@ router.get("/get-product",getProductController)
 router.post("/updata-product",authToken,updataProductController)
 router.get("/get-categoryproduct",getCategoryProductController)
 router.post("/category-product",getCategoryWiseProductController)
+router.post("/product_details",getProductDetailController)
+
 
 
 
