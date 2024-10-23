@@ -1,37 +1,34 @@
-const jwt = require ('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 
-async function authToken(req,res,next) {
+async function authToken(req, res, next) {
     try {
         const token = req.cookies?.token
 
-       
-        console.log("token",token);
-        
-        
-        if(!token){
+
+
+        if (!token) {
             return res.status(200).json({
-                message: "user ko dang nhap",
+                message: "Đăng nhập để thêm sản phẩm vào giỏ hàng",
                 error: true,
                 success: false,
             })
-            }
+        }
 
-         jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded) {
-            console.log(err);
-            console.log("decode",decoded);
+        jwt.verify(token, process.env.TOKEN_SECRET_KEY, function (err, decoded) {
 
-            if(err){
-                console.log("err auth",err);
-                
+
+            if (err) {
+                console.log("err auth", err);
+
             }
-            req.userId  = decoded?._id
-            
-            next() 
-          });
-       
-        
-        
+            req.userId = decoded?._id
+
+            next()
+        });
+
+
+
     } catch (error) {
         res.status(400).json({
             message: error.message || error,

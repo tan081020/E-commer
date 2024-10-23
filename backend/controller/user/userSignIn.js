@@ -16,7 +16,7 @@ async function userSignInController(req,res) {
         
         const user = await userModel.findOne({email})
 
-        console.log(user);
+      
         
         if(!user){
             throw new Error("Email không chính xác");
@@ -25,7 +25,7 @@ async function userSignInController(req,res) {
 
         const checkPassword = bcrypt.compareSync(password, user.password); // true
 
-        console.log("checkPassword",checkPassword);
+       
  
         if(checkPassword){
             const tokenData ={

@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 import disPlayINRCurrency from '../helpers/DisplayCurrency';
 import VerticalCardProduct from '../components/VerticalCardProduct';
+import CategoryWiseProductDisplay from '../components/CatagoryWiseProductDisplay';
 const ProductDetail = () => {
     const [data,setData] = useState({
       productName: "",
@@ -47,7 +48,7 @@ const ProductDetail = () => {
     }
     useEffect(()=>{
       fetchProductDetail()
-    },[])
+    },[params])
 
     const handleMouseEnterProduct = (imageUrl) =>{
       setActiveImage(imageUrl)
@@ -74,7 +75,7 @@ const ProductDetail = () => {
         {/** product imgae */}
         <div className=' h-96 flex flex-col lg:flex-row-reverse gap-4'>
 
-          <div className=' h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative'>
+          <div className=' h-[300px] w-[300px] lg:h-96 lg:w-96 bg-slate-200 relative p-2'>
             <img src={activeImage} className=' h-full w-full object-scale-down mix-blend-multiply' onMouseMove={handleZoomImage} onMouseLeave={handleLeaveZoomImage}></img>
 
               {/** product zoom */}
@@ -181,8 +182,11 @@ const ProductDetail = () => {
        }
       </div>
 
-
-      <VerticalCardProduct category={data.category} heading={"Sản phẩm gợi ý"}></VerticalCardProduct>
+       {
+        data?.category &&(
+          <CategoryWiseProductDisplay category={data?.category} heading={"Sản phẩm gợi ý"}></CategoryWiseProductDisplay>
+        )
+       }
 
     </div>
   )
